@@ -14,6 +14,14 @@
 				</swiper-item>
 			</swiper>
 		</view>
+		<!-- 分类部分 -->
+		<view class="catitems">
+			<view v-for="(v, i) in catitems" :key="i">
+				<navigator :url="v.navigator_url" :open-type="v.open_type">
+					<image :src="v.image_src"></image>
+				</navigator>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -27,14 +35,24 @@
 				indicatorDots: true,
 				autoplay: true,
 				interval: 2000,
-				duration: 500
+				duration: 500,
+				// 分类图标数据
+				catitems: []
 			}
 		},
 		onLoad() {
+			// 获取轮播图数据
 			uni.ajax({
 				url:"/home/swiperdata",
 			}).then((res)=>{
 				this.background = res.data.message
+			})
+			// 获取分类图标数据
+			uni.ajax({
+				url:"/home/catitems",
+			}).then((res)=>{
+				console.log(res)
+				this.catitems = res.data.message
 			})
 		},
 		methods: {
@@ -55,6 +73,17 @@
 	image{
 		width: 100%;
 		height: 100%;
+	}
+}
+.catitems{
+	margin-top: -35rpx;
+	margin-bottom: 20rpx;
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+	image{
+		width: 128rpx;
+		height: 140rpx;
 	}
 }
 </style>
