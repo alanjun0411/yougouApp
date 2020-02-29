@@ -7,14 +7,10 @@
 		<!-- 轮播图 -->
 		<view class="swiper_main">
 			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-				<swiper-item>
-					<view class="swiper-item uni-bg-red">A</view>
-				</swiper-item>
-				<swiper-item>
-					<view class="swiper-item uni-bg-green">B</view>
-				</swiper-item>
-				<swiper-item>
-					<view class="swiper-item uni-bg-blue">C</view>
+				<swiper-item v-for="(v,i) in background" :key="i">
+					<navigator url="" class="navigator">
+						<image :src="v.image_src" mode=""></image>
+					</navigator>
 				</swiper-item>
 			</swiper>
 		</view>
@@ -35,7 +31,11 @@
 			}
 		},
 		onLoad() {
-
+			uni.ajax({
+				url:"/home/swiperdata",
+			}).then((res)=>{
+				this.background = res.data.message
+			})
 		},
 		methods: {
 
@@ -47,5 +47,14 @@
 </script>
 
 <style lang="less" scoped>
-
+.swiper_main{
+	height: 350rpx;
+	.navigator{
+		height: 100%;
+	};
+	image{
+		width: 100%;
+		height: 100%;
+	}
+}
 </style>

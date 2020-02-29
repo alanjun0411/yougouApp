@@ -1,7 +1,8 @@
 <script>
+	import ajax from "./utils/ajax.js"
 	export default {
 		onLaunch: function() {
-			console.log('App Launch')
+			uni.ajax = ajax
 		},
 		onShow: function() {
 			console.log('App Show')
