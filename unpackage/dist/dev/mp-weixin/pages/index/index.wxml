@@ -1,0 +1,1 @@
+<view class="content"><image class="logo" src="/static/images/reg_logo@2x.png"></image><view class="text-area"><text class="title">{{title}}</text></view></view>
