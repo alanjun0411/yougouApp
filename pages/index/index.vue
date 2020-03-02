@@ -121,7 +121,7 @@
 @import url("../../common/style.css");
 .searchs{
 	position: fixed;
-	top: 44px;
+	top: 0;
 	width: 750rpx;
 	z-index: 2;
 }
