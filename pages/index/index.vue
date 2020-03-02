@@ -22,6 +22,32 @@
 				</navigator>
 			</view>
 		</view>
+		<!-- 楼层部分 -->
+		<view class="floordata">
+			<view v-for="(item,index) in floordata" :key="index" class="floordata_one">
+				<view class="floordata_one_title">
+					<image :src="item.floor_title.image_src"></image>
+				</view>
+				<view class="floordata_one_content">
+					<view class="floordata_one_content_left">
+						<navigator url="">
+							<image :src="item.product_list[0].image_src" :style="'width:' + item.product_list[0].image_width + 'rpx;height:386rpx'"></image>
+						</navigator>
+					</view>
+					<view class="floordata_one_content_right">
+						<block v-for="(v,i) in item.product_list" :key="i">
+							<navigator url="">
+								<image :src="v.image_src" :style="'width:' + v.image_width + 'rpx;height:188rpx'" v-if="i>0"></image>
+							</navigator>
+						</block>
+					</view>
+				</view>
+			</view>
+			<view class="floordata_bottom">
+				<text class="iconfont icon-weixiao- weixiao"></text>
+				<text>我也是有底线的...</text>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -37,7 +63,9 @@
 				interval: 2000,
 				duration: 500,
 				// 分类图标数据
-				catitems: []
+				catitems: [],
+				// 楼层数据
+				floordata: []
 			}
 		},
 		onLoad() {
@@ -51,8 +79,14 @@
 			uni.ajax({
 				url:"/home/catitems",
 			}).then((res)=>{
-				console.log(res)
 				this.catitems = res.data.message
+			})
+			// 获取楼层数据
+			uni.ajax({
+				url:"/home/floordata",
+			}).then((res)=>{
+				this.floordata = res.data.message
+				console.log(this.floordata)
 			})
 		},
 		methods: {
@@ -65,6 +99,7 @@
 </script>
 
 <style lang="less" scoped>
+@import url("../../common/style.css");
 .swiper_main{
 	height: 350rpx;
 	.navigator{
@@ -85,5 +120,36 @@
 		width: 128rpx;
 		height: 140rpx;
 	}
+}
+.floordata_one_title{
+	padding-top: 20rpx;
+	background-color: #f4f4f5;
+}
+.floordata_one_title image{
+	width: 100%;
+	height: 60rpx;
+}
+.floordata_one_content{
+	display: flex;
+	padding: 20rpx;
+	padding-bottom: 10rpx;
+}
+.floordata_one_content_right{
+	flex: 1;
+	height: 386rpx;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	margin-left: 5rpx;;
+}
+.floordata_bottom{
+	padding: 10px 0;
+	font-size: 18px;
+	background-color: #f4f4f5;
+	text-align: center;
+	color: #333;
+}
+.weixiao{
+	margin-right: 5px;
 }
 </style>
