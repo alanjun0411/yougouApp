@@ -50,7 +50,11 @@
 				<text>我也是有底线的...</text>
 			</view>
 		</view>
-		
+		<!--回到顶部-->
+		<view class="gotoTop" v-if="scrollTop" @click="gotoTop">
+			<text class="iconfont icon-icon-test1 top_down"></text>
+			<text class="toptitle">顶部</text>
+		</view>
 	</view>
 </template>
 
@@ -68,8 +72,15 @@
 				// 分类图标数据
 				catitems: [],
 				// 楼层数据
-				floordata: []
+				floordata: [],
+				// 顶部显示的条件
+				scrollTop: false
 			}
+		},
+		onPageScroll(e) {
+			let scrollTop = e.scrollTop > 100 ? true : false
+			if (scrollTop === this.scrollTop) return
+			this.scrollTop = scrollTop
 		},
 		onLoad() {
 			// 获取轮播图数据
@@ -93,7 +104,12 @@
 			})
 		},
 		methods: {
-
+			gotoTop (e) {
+				uni.pageScrollTo({
+				    scrollTop: 0,
+				    duration: 300
+				});
+			}
 		},
 		components: {
 			search
@@ -163,5 +179,28 @@
 }
 .weixiao{
 	margin-right: 5px;
+}
+.gotoTop{
+	position: fixed;
+	bottom: 120rpx;
+	right: 30rpx;
+	width: 100rpx;
+	height: 100rpx;
+	background-color: rgba(255,255,255,.7);
+	font-size: 30rpx;
+	color: #333;
+	border-radius: 50%;
+	.top_down{
+		position: absolute;
+		top: 10rpx;
+		left: 50%;
+		font-size: 40rpx;
+		transform: translate(-50%);
+	}
+	.toptitle{
+		position: absolute;
+		top: 45rpx;
+		left: 23rpx;
+	}
 }
 </style>
