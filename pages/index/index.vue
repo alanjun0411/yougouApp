@@ -1,9 +1,11 @@
 <template>
 	<view class="content">
 		<!-- 搜索框 -->
-		<view>
+		<view class="searchs">
 			<search></search>
 		</view>
+		<!--空白占位-->
+		<view class="kobai"></view>
 		<!-- 轮播图 -->
 		<view class="swiper_main">
 			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
@@ -48,6 +50,7 @@
 				<text>我也是有底线的...</text>
 			</view>
 		</view>
+		
 	</view>
 </template>
 
@@ -100,6 +103,15 @@
 
 <style lang="less" scoped>
 @import url("../../common/style.css");
+.searchs{
+	position: fixed;
+	top: 44px;
+	width: 750rpx;
+	z-index: 2;
+}
+.kobai{
+	height: 50px;
+}
 .swiper_main{
 	height: 350rpx;
 	.navigator{

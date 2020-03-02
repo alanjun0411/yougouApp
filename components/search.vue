@@ -23,7 +23,7 @@
 @import url("../common/style.css");
 #search{
 	background-color: #fd3150;
-	padding: 15rpx 10rpx;
+	padding: 10px;
 	.content{
 		color: #ccc;
 		background-color: #FFFFFF;
