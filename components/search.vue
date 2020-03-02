@@ -31,6 +31,7 @@
 		border-radius: 4px;
 		text-align: center;
 		line-height: 30px;
+		font-size: 16px;
 	}
 }
 </style>

@@ -100,7 +100,6 @@
 				url:"/home/floordata",
 			}).then((res)=>{
 				this.floordata = res.data.message
-				console.log(this.floordata)
 			})
 		},
 		methods: {
