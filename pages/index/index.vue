@@ -45,7 +45,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="floordata_bottom">
+			<view class="floordata_bottom" v-if="floordata.length !== 0">
 				<text class="iconfont icon-weixiao- weixiao"></text>
 				<text>我也是有底线的...</text>
 			</view>
